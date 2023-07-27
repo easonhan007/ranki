@@ -19,6 +19,7 @@
       <% if @client %>
         <div class="col">
           <a class="btn btn-outline-success" data-action="click->cards#gen">Generate Back</a>
+          <div data-cards-target="loading" role="status" ></div>
         </div>
       <% end #if%>
     </div>

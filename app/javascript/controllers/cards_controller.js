@@ -1,36 +1,35 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["front", "msg", "back"]
+  static targets = ["front", "msg", "back", "loading"]
 
   connect() {
-	console.log('Hello', this.element)
+	console.log('cards controller', this.element)
   }
 
   gen() {
     const element = this.frontTarget
     const front = element.value
-	console.log(this.msgTarget)
 
 	if(front && front.length > 0) {
-		console.log('OK')
 		this.msgTarget.textContent = ""
+		this.loadingTarget.className = "spinner-border"
 		fetch('/cards/ai_gen_back' + "?front=" + front).then(response=>{
 			if (!response.ok) {
-				throw new Error('Network response was not ok');
+				this.msgTarget.textContent = "Network response was not ok"
+				throw new Error('');
 			  }
 			  return response.text();
 		})
 		.then(responseData => {
+			this.loadingTarget.className = ""
 			var result = JSON.parse(responseData)
-			console.log(result)
 			this.backTarget.value = result.content
 		})
 		.catch(error => {
 			console.error("Fetch error", error)
 		})
 	} else {
-		console.log('Please enter the front')
 		this.msgTarget.textContent = "Please enter the front"
 	}
   }

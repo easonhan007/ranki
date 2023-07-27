@@ -1,14 +1,25 @@
-<p style="color: green"><%= notice %></p>
+<div class="w-75 mx-auto">
+  <h3 class="my-4">Cards</h3 class="my-4">
 
-<h1>Cards</h1>
+  <table class="table">
+    <thead>
+      <th>Front</th>
+      <th>Deck</th>
+      <th>Learned</th>
+      <th>Created At</th>
+    </thead>
+    <tbody>
+      <% @cards.each do |card| %>
+        <tr>
+          <td><%= link_to card.front, card_path(card) %></td>
+          <td><%= link_to card.deck.name, deck_path(card.deck) %></td>
+          <td><%= card.learned %></td>
+          <td><%= time_ago_in_words(card.created_at) %> ago </td>
+        </tr> 
+      <% end %>
+    </tbody>
+  </table>
 
-<div id="cards">
-  <% @cards.each do |card| %>
-    <%= render card %>
-    <p>
-      <%= link_to "Show this card", card %>
-    </p>
-  <% end %>
+  <%= link_to "New card", new_card_path, class: 'btn btn-outline-primary my-4' %>
 </div>
 
-<%= link_to "New card", new_card_path %>

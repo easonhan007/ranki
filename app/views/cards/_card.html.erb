@@ -1,27 +1,11 @@
-<div id="<%= dom_id card %>">
-  <p>
-    <strong>Front:</strong>
-    <%= card.front %>
-  </p>
-
-  <p>
-    <strong>Back:</strong>
-    <%= card.back %>
-  </p>
-
-  <p>
-    <strong>Learned:</strong>
-    <%= card.learned %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= card.user_id %>
-  </p>
-
-  <p>
-    <strong>Deck:</strong>
-    <%= card.deck_id %>
-  </p>
-
+<div class="card my-4">
+  <div class="card-body">
+    <h5 class="card-title"><%= card.front%></h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary"><%= card.deck.name %></h6>
+    <article class="card-text">
+      <%= to_md(card.back)%>
+    </article>
+    <a href="#" class="card-link">Next</a>
+    <a href="#" class="card-link">Learned</a>
+  </div>
 </div>

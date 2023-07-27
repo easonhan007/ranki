@@ -70,7 +70,7 @@ class CardsController < ApplicationController
       第一个单词是: 
     '''
     front = params[:front].strip()
-    res = ''
+    res = 'Can not generate content'
     if @client 
       response = @client.chat(
         parameters: {
