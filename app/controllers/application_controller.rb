@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
-	before_action :authenticate_user!, :init_openai
+	include Pagy::Backend
+
+	before_action :authenticate_user!, :init_openai, :init_menu
 
 	def init_openai()
 		key = current_user.openai_key || ENV.fetch('OPENAI_API_KEY') rescue ''
@@ -21,4 +23,14 @@ class ApplicationController < ActionController::Base
 			@client = nil
 		end
 	end
+
+	def init_menu()
+		@menu = {
+			Home: '/',
+			Cards: cards_path,
+			Decks: decks_path,
+			Setting: edit_setting_path(current_user.setting),
+		}
+	end
+
 end

@@ -39,7 +39,7 @@ class SettingsController < ApplicationController
     respond_to do |format|
       if @setting.update(setting_params)
         format.html { redirect_to setting_url(@setting), notice: "Setting was successfully updated." }
-        format.json { render :show, status: :ok, location: @setting }
+        format.json { render :edit status: :ok, location: @setting }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @setting.errors, status: :unprocessable_entity }

@@ -3,7 +3,7 @@ class DecksController < ApplicationController
 
   # GET /decks or /decks.json
   def index
-    @decks = Deck.all
+    @pagy, @decks = pagy(current_user.decks.order('created_at DESC').all)
   end
 
   # GET /decks/1 or /decks/1.json
@@ -22,6 +22,7 @@ class DecksController < ApplicationController
   # POST /decks or /decks.json
   def create
     @deck = Deck.new(deck_params)
+    @deck.user = current_user
 
     respond_to do |format|
       if @deck.save

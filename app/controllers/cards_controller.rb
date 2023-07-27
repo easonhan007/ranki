@@ -3,7 +3,7 @@ class CardsController < ApplicationController
 
   # GET /cards or /cards.json
   def index
-    @cards = Card.all
+    @pagy, @cards = pagy(current_user.cards.order('created_at DESC'))
   end
 
   # GET /cards/1 or /cards/1.json
@@ -88,7 +88,7 @@ class CardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_card
-      @card = Card.find(params[:id])
+      @card = current_user.cards.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
