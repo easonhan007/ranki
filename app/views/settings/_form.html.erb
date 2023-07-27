@@ -1,7 +1,7 @@
 <%= form_with(model: setting) do |form| %>
   <% if setting.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
+      <h4><%= pluralize(setting.errors.count, "error") %> prohibited this setting from being saved:</h4>
 
       <ul>
         <% setting.errors.each do |error| %>
@@ -11,22 +11,17 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :openai_key, style: "display: block" %>
-    <%= form.text_field :openai_key %>
+  <div class="mb-4">
+    <%= form.label :openai_key, class: 'form-label' %>
+    <%= form.text_field :openai_key, class: 'form-control' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :openai_proxy, class: 'form-label' %>
+    <%= form.text_field :openai_proxy, class: 'form-control' %>
   </div>
 
   <div>
-    <%= form.label :openai_proxy, style: "display: block" %>
-    <%= form.text_field :openai_proxy %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit(class: 'btn btn-outline-primary') %>
   </div>
 <% end %>

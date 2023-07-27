@@ -1,10 +1,6 @@
-<h1>Editing setting</h1>
-
-<%= render "form", setting: @setting %>
-
-<br>
-
-<div>
-  <%= link_to "Show this setting", @setting %> |
-  <%= link_to "Back to settings", settings_path %>
+<div class="w-75 mx-auto my-4">
+  <p class="text text-success"><%= notice %></p>
+  <h3 class="my-4">Editing setting</h3>
+  <%= render "form", setting: @setting %>
 </div>
+
