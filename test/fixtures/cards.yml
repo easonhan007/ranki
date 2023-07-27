@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: cards
+#
+#  id         :integer          not null, primary key
+#  front      :string
+#  back       :text
+#  learned    :boolean          default(FALSE)
+#  user_id    :integer          not null
+#  deck_id    :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  front: MyString
+  back: MyString
+  learned: false
+  user: one
+  deck: one
+
+two:
+  front: MyString
+  back: MyString
+  learned: false
+  user: two
+  deck: two

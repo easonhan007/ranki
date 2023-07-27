@@ -1,0 +1,40 @@
+<%= form_with(model: card) do |form| %>
+  <% if card.errors.any? %>
+    <div style="color: red">
+      <h4><%= pluralize(card.errors.count, "error") %> prohibited this card from being saved:</h4>
+
+      <ul>
+        <% card.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div data-controller="cards">
+    <div class="mb-4 row" >
+      <div class="col">
+        <%= form.text_field :front, class: 'form-control', placeholder: 'front of card', required: '', data: {'cards-target': "front"} %>
+        <p class="text-danger text" data-cards-target="msg"></p>
+      </div>
+      <% if @client %>
+        <div class="col">
+          <a class="btn btn-outline-success" data-action="click->cards#gen">Generate Back</a>
+        </div>
+      <% end #if%>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :back, class: 'form-label'%>
+      <%= form.text_area :back, class: 'form-control', rows: 5, data: {'cards-target': 'back'}%>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <%= form.label :deck_id, class: 'form-label'%>
+    <%= form.collection_select :deck_id, Deck.order('created_at').all, :id, :name, {}, class: 'form-select' %>
+  </div>
+
+  <div class="mb-4">
+    <%= form.submit(class: 'btn btn-outline-primary') %>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+<div class="w-75 max-auto my-4">
+  <h3>New card</h3>
+
+  <div class="row">
+    <%= render "form", card: @card %>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <%= link_to "Back to cards", cards_path, class: 'btn btn-outline-dark' %>
+    </div>
+  </div>
+</div>
