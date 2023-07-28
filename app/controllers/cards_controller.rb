@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: %i[ show edit update destroy ]
+  before_action :set_card, only: %i[ show edit update destroy, toggle]
 
   # GET /cards or /cards.json
   def index
@@ -8,6 +8,7 @@ class CardsController < ApplicationController
 
   # GET /cards/1 or /cards/1.json
   def show
+    @card.touch()
   end
 
   # GET /cards/new
@@ -17,6 +18,18 @@ class CardsController < ApplicationController
 
   # GET /cards/1/edit
   def edit
+  end
+
+  # GET /cards/1/toggle
+
+  def toggle
+    respond_to do |format|
+      if @card.toggle!(:learned)
+        format.html { redirect_to card_url(@card), notice: "Card status updated" }
+      else
+        format.html { redirect_to card_url(@card), notice: "Can not update the card status" }
+      end #if 
+    end #repsond_to
   end
 
   # POST /cards or /cards.json
@@ -65,8 +78,8 @@ class CardsController < ApplicationController
       task1:单词词性、音标、中文释义、英文释义、词根词缀起源故事，一行一个
       task2:用这个单词造三个英文例句附英文翻译 
       将以上任务结果按以下Markdown格式排版输出:
-      ### 单词释义  <task1 result>  
-      ### 场景例句  <task2 result> 
+      #### 单词释义  <task1 result>  
+      #### 场景例句  <task2 result> 
       第一个单词是: 
     '''
     front = params[:front].strip()

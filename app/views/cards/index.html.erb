@@ -7,28 +7,7 @@
       <%= link_to "New card", new_card_path, class: 'btn btn-outline-primary my-4' %>
     </div>
   </div>
+  <%= render(partial: 'list', locals: {cards: @cards, pagy: @pagy})%>
 
-  <table class="table">
-    <thead>
-      <th>Front</th>
-      <th>Deck</th>
-      <th>Learned</th>
-      <th>Created At</th>
-    </thead>
-    <tbody>
-      <% @cards.each do |card| %>
-        <tr>
-          <td><%= link_to card.front, card_path(card) %></td>
-          <td><%= link_to card.deck.name, deck_path(card.deck) %></td>
-          <td><%= card.learned %></td>
-          <td><%= time_ago_in_words(card.created_at) %> ago </td>
-        </tr> 
-      <% end %>
-    </tbody>
-  </table>
-
-  <div class="row">
-    <div class="col"> <%== pagy_bootstrap_nav(@pagy) %> </div>
-  </div>
 </div>
 

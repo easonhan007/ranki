@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     collection do
       get 'ai_gen_back'
     end
+    member do
+      get 'toggle'
+    end
   end
 
   resources :decks

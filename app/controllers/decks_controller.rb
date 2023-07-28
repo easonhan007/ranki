@@ -8,6 +8,8 @@ class DecksController < ApplicationController
 
   # GET /decks/1 or /decks/1.json
   def show
+    @deck.touch()
+    @pagy, @cards = pagy(@deck.cards.order('created_at DESC'))
   end
 
   # GET /decks/new

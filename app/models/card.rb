@@ -14,4 +14,6 @@
 class Card < ApplicationRecord
   belongs_to :user
   belongs_to :deck
+
+  scope :recent, -> { order('updated_at DESC').limit(20) }
 end

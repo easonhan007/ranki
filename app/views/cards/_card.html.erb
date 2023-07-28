@@ -1,11 +1,20 @@
 <div class="card my-4">
   <div class="card-body">
-    <h5 class="card-title"><%= card.front%></h5>
+    <h3 class="card-title"><%= card.front%>
+      <span class="" style="font-size: .8em"><%= card.learned? ? '✅' : ''%></span>
+    </h3>
     <h6 class="card-subtitle mb-2 text-body-secondary"><%= card.deck.name %></h6>
     <article class="card-text">
       <%= to_md(card.back)%>
     </article>
-    <a href="#" class="card-link">Next</a>
-    <a href="#" class="card-link">Learned</a>
+    <div class="row">
+      <div class="col">
+        <a href="#" class="btn btn-outline-dark">Next</a>
+      </div>
+      <div class="col">
+        <% text = card.learned? ? 'Forget' : 'Learned' %>
+        <a href="<%= toggle_card_path(card)%>" class="btn btn-outline-success"><%= text %></a>
+      </div>
+    </div>
   </div>
 </div>
