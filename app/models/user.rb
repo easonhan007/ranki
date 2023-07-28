@@ -17,7 +17,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  after_create_commit :create_setting
+  after_create_commit :create_setting, :create_default_deck
   
   has_one :setting
   has_many :cards
@@ -29,5 +29,9 @@ class User < ApplicationRecord
   private 
     def create_setting
       Setting.create!(user_id: id)  
+    end
+
+    def create_default_deck
+      Deck.create!(name: 'default', user_id: id)
     end
 end
