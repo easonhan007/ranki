@@ -1,13 +1,15 @@
-<div class="w-75 mx-auto my-4">
-  <div class="row">
-    <div class="col">
-      <h3>My Decks</h3>
+<div class="row my-4">
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col">
+        <h3>My Decks</h3>
+      </div>
+      <div class="col">
+        <%= link_to "New deck", new_deck_path, class: 'btn btn-outline-primary' %>
+      </div>
     </div>
-    <div class="col">
-      <%= link_to "New deck", new_deck_path, class: 'btn btn-outline-primary' %>
-    </div>
-  </div>
 
-  <%= render partial: 'list', locals: {decks: @decks}%>
+    <%= render partial: 'list', locals: {decks: @decks}%>
+  </div>
 
 </div>

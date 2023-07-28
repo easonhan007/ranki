@@ -32,7 +32,7 @@
 
   <div class="mb-4">
     <%= form.label :deck_id, class: 'form-label'%>
-    <%= form.collection_select :deck_id, Deck.order('created_at').all, :id, :name, {}, class: 'form-select' %>
+    <%= form.collection_select :deck_id, current_user.decks.order('created_at').all, :id, :name, {}, class: 'form-select' %>
   </div>
 
   <div class="mb-4">

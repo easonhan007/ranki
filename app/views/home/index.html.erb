@@ -1,12 +1,14 @@
-<div class="w-75 mx-auto mb-4">
-	<%= link_to 'New', new_card_path, class: 'btn btn-outline-primary my-2' %>
-	<div class="row my-4">
-		<h3>My Decks</h3>
-		<%= render(partial: 'decks/list', locals: {decks: @decks})%>
-	</div>
-	<div class="row mb-4">
-		<h3>Recent Cards</h3>
-		<%= render(partial: 'cards/list', locals: {cards: @cards, pagy: nil})%>
+<div class="row my-4">
+	<div class="col-md-8">
+		<%= link_to 'New', new_card_path, class: 'btn btn-outline-primary my-2' %>
+		<div class="row my-4">
+			<h3>My Decks</h3>
+			<%= render(partial: 'decks/list', locals: {decks: @decks})%>
+		</div>
+		<div class="row mb-4">
+			<h3>Recent Cards</h3>
+			<%= render(partial: 'cards/list', locals: {cards: @cards, pagy: nil})%>
+		</div>
 	</div>
 </div>
 
