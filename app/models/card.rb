@@ -16,4 +16,8 @@ class Card < ApplicationRecord
   belongs_to :deck
 
   scope :recent, -> { order('updated_at DESC').limit(20) }
+
+  def next
+    Card.where('created_at < ? And user_id = ?', created_at, user_id).order('created_at DESC').limit(1).first
+  end
 end

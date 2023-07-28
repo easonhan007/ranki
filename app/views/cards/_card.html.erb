@@ -9,7 +9,9 @@
     </article>
     <div class="row">
       <div class="col">
-        <a href="#" class="btn btn-outline-dark">Next</a>
+        <% if card.next %>
+          <a href="<%= card_path(card.next)%>" class="btn btn-outline-dark">Next</a>
+        <% end %>
       </div>
       <div class="col">
         <% text = card.learned? ? 'Forget' : 'Learned' %>

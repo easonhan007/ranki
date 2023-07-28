@@ -29,7 +29,6 @@ class ApplicationController < ActionController::Base
 			Home: '/',
 			Cards: cards_path,
 			Decks: decks_path,
-			Setting: edit_setting_path(current_user.setting),
 		}
 	end
 

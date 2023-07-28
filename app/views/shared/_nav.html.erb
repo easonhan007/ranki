@@ -9,6 +9,10 @@
         <% @menu.each_pair do |name, link| %>
             <%= link_to name, link, class: "nav-link" + current_kls?(link) %>
         <% end %>
+        <% if current_user %>
+    			<%= link_to 'Setting', edit_setting_path(current_user.setting), class: 'nav-link' %>
+        	<%= button_to 'Logout', destroy_user_session_path, method: 'delete', class:'nav-link', data:{turbo_method: 'delete'}%>
+        <% end %>
       </div>
     </div>
   </div>
