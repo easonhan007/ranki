@@ -10,7 +10,7 @@
 #
 class Deck < ApplicationRecord
   belongs_to :user
-  has_many :cards
+  has_many :cards, dependent: :destroy
 
   scope :recent, -> { order('updated_at DESC').limit(4) }
 end
