@@ -20,16 +20,22 @@ FROM base as build
 
 # Install packages needed to build gems and node modules
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential curl git libvips node-gyp pkg-config python-is-python3
+    apt-get install --no-install-recommends -y build-essential curl git libvips node-gyp pkg-config python-is-python3 
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=18.15.0
 ARG YARN_VERSION=1.22.19
 ENV PATH=/usr/local/node/bin:$PATH
+
 RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
     /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
     npm install -g yarn@$YARN_VERSION && \
     rm -rf /tmp/node-build-master
+
+# Use the latest version of node build 
+# RUN curl -sL https://registry.npmmirror.com/-/binary/node/v18.15.0/node-v18.15.0-linux-x64.tar.gz | tar zx -C /tmp/ && \
+#     mv /tmp/node-v18.15.0-linux-x64 /usr/local/node && \
+#     npm install -g yarn@$YARN_VERSION 
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -65,9 +71,9 @@ COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
 # Run and own only the runtime files as a non-root user for security
-# RUN useradd rails --create-home --shell /bin/bash && \
-#      chown -R rails:rails db log storage tmp
-# USER rails:rails
+RUN useradd rails --create-home --shell /bin/bash && \
+    chown -R rails:rails db log storage tmp config
+USER rails:rails
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
