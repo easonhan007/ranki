@@ -22,6 +22,8 @@ class User < ApplicationRecord
   has_one :setting
   has_many :cards
   has_many :decks
+  has_many :favorites 
+  has_many :favorite_questions, through: :favorites
 
   delegate :openai_key, to: :setting
   delegate :openai_proxy, to: :setting

@@ -18,4 +18,8 @@ module ApplicationHelper
 		''
 	end
 
+	def back_link
+		lint_to 'Back', 'javascript:history.back()', class: 'btn btn-secondary'
+	end
+
 end

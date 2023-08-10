@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :answers
+  resources :questions
+  resources :categories
   resources :settings
 
   resources :cards do

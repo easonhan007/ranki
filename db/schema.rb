@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_27_035253) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_10_032343) do
+  create_table "answers", force: :cascade do |t|
+    t.text "content"
+    t.integer "question_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
   create_table "cards", force: :cascade do |t|
     t.string "front"
     t.text "back"
@@ -23,12 +33,40 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_035253) do
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
   create_table "decks", force: :cascade do |t|
     t.string "name"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_decks_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "question_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_favorites_on_question_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "user_id", null: false
+    t.string "date_of_occurrence"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_questions_on_category_id"
+    t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
   create_table "settings", force: :cascade do |t|
@@ -52,8 +90,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_035253) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
   add_foreign_key "cards", "decks"
   add_foreign_key "cards", "users"
+  add_foreign_key "categories", "users"
   add_foreign_key "decks", "users"
+  add_foreign_key "favorites", "questions"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "questions", "categories"
+  add_foreign_key "questions", "users"
   add_foreign_key "settings", "users"
 end

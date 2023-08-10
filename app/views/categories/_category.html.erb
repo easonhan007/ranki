@@ -1,0 +1,9 @@
+<div id="<%= dom_id category %>">
+  <h4 class="mb-2"> <%= category.name %> 
+    <small class="text text-secondary"> <%= category.user.email %> 
+    <span style= "font-size: .8em"><%= time_ago_in_words(category.created_at)%> ago </span>
+    </small>
+  </h4>
+
+  <%= render partial: 'questions/q_list', locals: { questions: @questions, pagy: @pagy }%>
+</div>

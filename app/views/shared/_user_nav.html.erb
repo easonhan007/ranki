@@ -1,0 +1,10 @@
+<% if current_user %>
+	<nav class="nav flex-column">
+	  <a class="nav-link" href="#"><%= current_user.email %></a>
+	  <%= button_to 'Logout', 
+					  destroy_user_session_path, 
+					  method: 'delete', 
+					  class:'nav-link text text-danger', 
+					  data:{turbo_method: 'delete'}%>
+	</nav>
+<% end %>

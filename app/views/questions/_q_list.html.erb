@@ -1,0 +1,26 @@
+<table class="table mb-2">
+	<thead>
+	  <th>ID</th>
+	  <th>Category</th>
+	  <th>Content</th>
+	  <th>Occurrence</th>
+	  <th>Creator</th>
+	  <th>Created At</th>
+	</thead>
+	<tbody>
+		<% questions.each do |q| %>
+			<tr>
+				<td><%= q.id %></td>
+				<td><%= link_to q.category.name, q.category %></td>
+				<td title="<%= q.content %>"><%= link_to q.content.truncate(20), q %></td>
+				<td><%= q.date_of_occurrence %></td>
+				<td><%= q.user.email.truncate(10) %></td>
+				<td><%= time_ago_in_words q.created_at %> ago</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<div class="my-4">
+  <%== pagy_bootstrap_nav(pagy) %> 
+</div>

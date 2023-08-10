@@ -16,4 +16,26 @@ if Rails.env.eql?('development')
 
 	puts "Create a default deck"
 	Deck.find_or_create_by!(name: '2023', user_id: 1)
+
+	categories = ['Part 1', 'Part 2', 'Part 3']
+	categories.each do |ct|
+		puts "Creating category #{ct}"
+		Category.find_or_create_by!(name: ct, user_id: 1)	
+	end #each
+
+	questons_path = Rails.root.join('db').join('questions.json')
+	File.open(questons_path, 'r') do |f|
+		json_content = f.read
+		questions_list = JSON.parse(json_content)
+		questions_list.each do |q|
+			category = Category.where(name: q['part'].strip).first
+			if category
+				q['questions'].each do |question|
+					puts "creating #{question} for #{category.name}"
+					Question.find_or_create_by!(content: question, date_of_occurrence: q['date'], category_id: category.id, user_id: 1)
+				end #each
+			end #if
+		end #each
+	end #open
+
 end
