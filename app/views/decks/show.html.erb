@@ -1,20 +1,16 @@
-<div class="row">
-  <div class="col-md-8">
-    <h3 class="my-4"><%= @deck.name %>
-      <small class="text text-secondary pl-2"><%= @deck.cards.count %> cards</small>
-    </h3>
+<h3 class="my-4"><%= @deck.name %>
+  <small class="text text-secondary pl-2"><%= @deck.cards.count %> cards</small>
+</h3>
 
-    <%= render(partial: 'cards/list', locals: {cards: @cards, pagy: @pagy})%>
+<%= render(partial: 'cards/list', locals: {cards: @cards, pagy: @pagy})%>
 
-    <div class="my-4">
-      <div class="row">
-        <div class="col">
-          <%= link_to "Edit", edit_deck_path(@deck), class: 'btn btn-outline-primary' %> 
-        </div>
-        <div class="col">
-          <%= button_to "Destroy", @deck, method: :delete, class: 'btn btn-outline-danger'%>
-        </div>
-      </div>
+<div class="my-4">
+  <div class="row">
+    <div class="col">
+      <%= link_to "Edit", edit_deck_path(@deck), class: 'btn btn-outline-primary' %> 
+    </div>
+    <div class="col">
+      <%= button_to "Destroy", @deck, method: :delete, class: 'btn btn-outline-danger'%>
     </div>
   </div>
 </div>
