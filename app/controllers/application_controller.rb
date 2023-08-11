@@ -29,6 +29,8 @@ class ApplicationController < ActionController::Base
 			Home: '/',
 			Cards: cards_path,
 			Decks: decks_path,
+			Questions: questions_path,
+			Categories: categories_path,
 		}
 	end
 

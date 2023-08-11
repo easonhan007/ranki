@@ -3,9 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["front", "msg", "back", "loading"]
 
-  connect() {
-	console.log('cards controller', this.element)
-  }
+  connect() { }
 
   gen() {
     const element = this.frontTarget

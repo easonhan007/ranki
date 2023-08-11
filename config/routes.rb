@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  resources :answers
-  resources :questions
+  get 'answers/ai_gen_content', to: 'answers#gen_content'
+
+  resources :questions do
+    resources :answers
+  end
+
   resources :categories
   resources :settings
 

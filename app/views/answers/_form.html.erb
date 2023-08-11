@@ -1,7 +1,7 @@
-<%= form_with(model: answer) do |form| %>
+<%= form_with(model: [question, answer]) do |form| %>
   <% if answer.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h2>
+      <h5><%= pluralize(answer.errors.count, "error") %> prohibited this answer from being saved:</h5>
 
       <ul>
         <% answer.errors.each do |error| %>
@@ -11,22 +11,39 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
+  <div data-controller="answers">
+    <div class="mb-4">
+      <h4><%= answer.question.content %></h4>
+    </div>
+    <p class="text-danger text my-2" data-answers-target="msg"></p>
+
+    <div class="mb-2">
+      <%= form.label :keywords, class: 'form-label' %>
+      <%= form.text_area :keywords, class: 'form-control', rows: 5, data: {'answers-target': 'keywords'},
+                          placeholder: 'Describe your situations to generate the answer' %>
+      <% if @client %>
+        <div class="my-2">
+          <a class="btn btn-outline-success" data-action="click->answers#gen">Generate Answer</a>
+          <div data-answers-target="loading" role="status" ></div>
+        </div>
+      <% end #if%>
+    </div>
+
+    <div class="mb-2">
+      <%= form.hidden_field :question_id, value: answer.question.id, data: {'answers-target': 'question'} %>
+
+      <%= form.label :content, class: 'form-label' %>
+      <%= form.text_area :content, class: 'form-control', rows: 10, required: '', data: {'answers-target': 'content'}%>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :question_id, style: "display: block" %>
-    <%= form.text_field :question_id %>
-  </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="mb-2 row">
+    <div class="col">
+      <%= form.submit(class: 'btn btn-outline-primary') %>
+    </div>
+    <div class="col">
+      <%= back_link %>
+    </div>
   </div>
 <% end %>
