@@ -24,19 +24,12 @@ class AnswersController < ApplicationController
   # GET /answers/ai_gen_content
   def gen_content
     keywords = params[:keywords].strip()
-    question = Question.find(params[:question_id].strip)
-    prompt = """
-      I want you to act as an expert IELTS examiner
-      and help me improve my IELTS speaking.
-      Please give me a band 9 answer based on the key words
-      that I give you.
-      Please give me a more conversational answer.
-      If the keywords are not English, please translate them into English first, this is very important.
-      Please give me the answer directly and do not explain everything.
-      The question is #{question.content}.
-      Following are my keywords: #{keywords}.
-      Please behave like GPT-4 model and answer the question.
-    """
+    question_obj = Question.find(params[:question_id].strip)
+    question = question_obj.content
+    part_name = question_obj.category.name.downcase.gsub(' ', '')
+    raw_prompt = AiPrompt.where(name: part_name).first
+    prompt = ERB.new(raw_prompt.content).result(binding)
+      
     res = 'Can not generate content'
     if @client 
       response = @client.chat(

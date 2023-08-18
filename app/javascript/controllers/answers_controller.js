@@ -4,9 +4,12 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["keywords", "msg", "content", "loading", "question"]
 
-  connect() { }
+  connect() {
+    console.log('ok')
+  }
 
   gen() {
+    console.log('clicked')
     const element = this.keywordsTarget
     const keyword = element.value
 

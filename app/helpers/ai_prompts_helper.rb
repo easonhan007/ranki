@@ -1,0 +1,2 @@
+module AiPromptsHelper
+end

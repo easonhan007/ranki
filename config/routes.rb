@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ai_prompts
   get 'answers/ai_gen_content', to: 'answers#gen_content'
 
   resources :questions do
