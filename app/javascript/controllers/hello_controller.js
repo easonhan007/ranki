@@ -2,6 +2,12 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
-    this.element.textContent = "Hello World!"
+    console.log('from hello controller')
+  }
+
+  newCard(e) {
+    if(e.code == 'KeyN') {
+      window.location = "/cards/new"
+    }
   }
 }

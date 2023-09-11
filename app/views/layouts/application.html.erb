@@ -10,13 +10,17 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body class="h-100">
+  <body data-controller="hello" data-action="keyup@window->hello#newCard">
     <%= render('shared/nav')%>
     <%= render('shared/notice')%>
-    <div class="container">
+    <main class="container" style="min-height:86vh">
       <div class="row">
         <div class="col-md-8"> <%= yield %> </div>
       </div>
-    </div>
+      <div class="position-fixed bottom-0 end-0 mb-3 me-3">
+        <a href="<%= new_card_path %>" style="font-size:1.5em"><i class="bi bi-plus-circle"></i></a>
+      </div>
+    </main>
+    <%= render('shared/footer')%>
   </body>
 </html>
