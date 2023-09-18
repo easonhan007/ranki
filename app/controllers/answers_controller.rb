@@ -89,7 +89,7 @@ class AnswersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
-      @answer = Answer.find(params[:id])
+      @answer = current_user.answers.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

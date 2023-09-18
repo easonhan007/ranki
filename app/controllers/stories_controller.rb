@@ -4,7 +4,7 @@ class StoriesController < ApplicationController
 
   # GET /stories or /stories.json
   def index
-    @stories = current_user.stories.all
+    @stories = current_user.stories.order('created_at DESC').all
   end
 
   # GET /stories/1 or /stories/1.json
@@ -79,7 +79,7 @@ class StoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_story
-      @story = Story.find(params[:id])
+      @story = current_user.stories.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
