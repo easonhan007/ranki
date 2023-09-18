@@ -35,4 +35,8 @@ class ApplicationController < ActionController::Base
 		}
 	end
 
+  def can_quick_new_card
+    @can_new_card = true
+  end
+
 end

@@ -1,5 +1,6 @@
 class SettingsController < ApplicationController
   before_action :set_setting, only: %i[ show edit update destroy ]
+  before_action :can_quick_new_card
 
   # GET /settings or /settings.json
   def index

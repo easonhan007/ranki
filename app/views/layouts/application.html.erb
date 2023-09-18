@@ -10,7 +10,12 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
+  <% if @can_new_card %>
   <body data-controller="hello" data-action="keyup@window->hello#newCard">
+  <% else %>
+  <body>
+  <% end %>
+  
     <%= render('shared/nav')%>
     <%= render('shared/notice')%>
     <main class="container" style="min-height:86vh">

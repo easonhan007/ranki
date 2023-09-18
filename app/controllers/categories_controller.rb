@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
+  before_action :can_quick_new_card
 
   # GET /categories or /categories.json
   def index

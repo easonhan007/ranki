@@ -1,5 +1,6 @@
 class CardsController < ApplicationController
   before_action :set_card, only: %i[ show edit update destroy, toggle]
+  before_action :can_quick_new_card
 
   # GET /cards or /cards.json
   def index
@@ -101,4 +102,5 @@ class CardsController < ApplicationController
     def card_params
       params.require(:card).permit(:front, :back, :learned, :user_id, :deck_id)
     end
+
 end

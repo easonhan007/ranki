@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
   before_action :set_story, only: %i[ show edit update destroy ]
+  before_action :can_quick_new_card
 
   # GET /stories or /stories.json
   def index

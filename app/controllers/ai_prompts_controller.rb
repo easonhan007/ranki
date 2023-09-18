@@ -1,5 +1,6 @@
 class AiPromptsController < ApplicationController
   before_action :set_ai_prompt, only: %i[ show edit update destroy ]
+  before_action :can_quick_new_card
 
   # GET /ai_prompts or /ai_prompts.json
   def index

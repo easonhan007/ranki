@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: %i[ show edit update destroy ]
+  before_action :can_quick_new_card
 
   # GET /answers or /answers.json
   def index
