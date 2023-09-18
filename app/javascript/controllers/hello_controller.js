@@ -6,7 +6,7 @@ export default class extends Controller {
   }
 
   newCard(e) {
-    if(e.code == 'KeyN') {
+    if(e.ctrlKey && e.code == 'KeyN') {
       window.location = "/cards/new"
     }
   }
