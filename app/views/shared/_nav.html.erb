@@ -23,6 +23,7 @@
               </li>
               <li><hr class="dropdown-divider"></li>
               <li> <%= link_to 'Setting', edit_setting_path(current_user.setting), class: 'dropdown-item' %> </li>
+              <li> <%= link_to 'Prompt', ai_prompts_path, class: 'dropdown-item' %> </li>
             </ul>
           </li>
         <% else %>

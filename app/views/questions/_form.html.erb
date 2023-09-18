@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="mb-2">
     <%= form.label :category_id, class: 'form-label' %>
-    <%= form.text_field :category_id %>
+    <%= form.collection_select :category_id, Category.all, :id, :name, {}, class: 'form-control' %>
   </div>
 
-  <div>
+  <div class="mb-2">
     <%= form.label :date_of_occurrence, class: 'form-label' %>
-    <%= form.text_field :date_of_occurrence %>
+    <%= form.text_field :date_of_occurrence, class: 'form-control' %>
   </div>
 
-  <div>
+  <div class="mb-2">
     <%= form.label :content, class: 'form-label' %>
-    <%= form.text_area :content %>
+    <%= form.text_area :content, class: 'form-control', rows: 20, required: true %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-2">
+    <%= form.submit(class: 'btn btn-outline-primary ') %>
   </div>
 <% end %>

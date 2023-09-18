@@ -36,6 +36,8 @@ class AiPromptsController < ApplicationController
 
   # PATCH/PUT /ai_prompts/1 or /ai_prompts/1.json
   def update
+    # does not allow user to edit the pormpt name
+    ai_prompt_params.delete(:name)
     respond_to do |format|
       if @ai_prompt.update(ai_prompt_params)
         format.html { redirect_to ai_prompt_url(@ai_prompt), notice: "Ai prompt was successfully updated." }
@@ -48,14 +50,14 @@ class AiPromptsController < ApplicationController
   end
 
   # DELETE /ai_prompts/1 or /ai_prompts/1.json
-  def destroy
-    @ai_prompt.destroy
+  # def destroy
+  #   @ai_prompt.destroy
 
-    respond_to do |format|
-      format.html { redirect_to ai_prompts_url, notice: "Ai prompt was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to ai_prompts_url, notice: "Ai prompt was successfully destroyed." }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,14 +1,24 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Ai prompts</h1>
+<h3>Prompts</h3>
+<%= link_to "New Prompt", new_ai_prompt_path %>
 
 <div id="ai_prompts">
-  <% @ai_prompts.each do |ai_prompt| %>
-    <%= render ai_prompt %>
-    <p>
-      <%= link_to "Show this ai prompt", ai_prompt %>
-    </p>
-  <% end %>
+  <table class="table">
+    <thead>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Operation</th>
+    </thead>
+    <tbody>
+      <% @ai_prompts.each do |ai_prompt| %>
+        <tr>
+          <td><%= ai_prompt.id %></td>
+          <td><%= link_to ai_prompt.name, ai_prompt %></td>
+          <td><%= link_to 'Edit', edit_ai_prompt_path(ai_prompt), class: 'btn btn-sm btn-outline-primary' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
-<%= link_to "New ai prompt", new_ai_prompt_path %>
