@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_18_040606) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_18_085544) do
   create_table "ai_prompts", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -57,6 +57,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_040606) do
     t.index ["user_id"], name: "index_decks_on_user_id"
   end
 
+  create_table "export_records", force: :cascade do |t|
+    t.text "csv"
+    t.integer "user_id", null: false
+    t.integer "success", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_export_records_on_user_id"
+  end
+
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "question_id", null: false
@@ -64,6 +73,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_040606) do
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_favorites_on_question_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "import_records", force: :cascade do |t|
+    t.text "csv"
+    t.integer "user_id", null: false
+    t.integer "success", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_import_records_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -115,8 +133,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_040606) do
   add_foreign_key "cards", "users"
   add_foreign_key "categories", "users"
   add_foreign_key "decks", "users"
+  add_foreign_key "export_records", "users"
   add_foreign_key "favorites", "questions"
   add_foreign_key "favorites", "users"
+  add_foreign_key "import_records", "users"
   add_foreign_key "questions", "categories"
   add_foreign_key "questions", "users"
   add_foreign_key "settings", "users"

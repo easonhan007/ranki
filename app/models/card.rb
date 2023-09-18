@@ -17,6 +17,8 @@ class Card < ApplicationRecord
 
   scope :recent, -> { order('updated_at DESC').limit(20) }
 
+  validates :front, presence: true
+
   def next
     Card.where('created_at < ? And user_id = ?', created_at, user_id).order('created_at DESC').limit(1).first
   end

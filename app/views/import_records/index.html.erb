@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<h3>Import records</h3>
+<%= link_to "New import record", new_import_record_path, class: 'my-2 btn btn-outline-primary' %>
+
+<table class="table">
+  <thead>
+    <th>ID</th>
+    <th>Success</th>
+    <th>Created At</th>
+  </thead>
+  <tbody>
+    <% @import_records.each do |r| %>
+      <tr>
+        <td><%= link_to r.id, r%></td>
+        <td><%= r.success%></td>
+        <td><%= time_ago_in_words r.created_at %> ago</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

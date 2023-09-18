@@ -1,0 +1,23 @@
+<%= form_with(model: import_record) do |form| %>
+  <% if import_record.errors.any? %>
+    <div style="color: red">
+      <h5><%= pluralize(import_record.errors.count, "error") %> prohibited this import_record from being saved:</h5>
+
+      <ul>
+        <% import_record.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-2">
+    <%= form.label :csv, class: 'form-label' %>
+    <%= form.text_area :csv, class: 'form-control', rows: 20, placeholder: 'id,front,back,learned,user_id,deck_id,created_at,updated_at' %>
+  </div>
+
+  <div class="mb-2">
+    <%= form.submit(class: 'btn btn-outline-primary') %>
+  </div>
+
+<% end %>

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @import_record %>
+
+<div>
+  <%= link_to "Edit this import record", edit_import_record_path(@import_record) %> |
+  <%= link_to "Back to import records", import_records_path %>
+
+  <%= button_to "Destroy this import record", @import_record, method: :delete %>
+</div>

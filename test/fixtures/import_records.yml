@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: import_records
+#
+#  id         :integer          not null, primary key
+#  csv        :text
+#  user_id    :integer          not null
+#  success    :integer          default(0)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  csv: MyText
+  user: one
+  success: 1
+
+two:
+  csv: MyText
+  user: two
+  success: 1
