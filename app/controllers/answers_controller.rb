@@ -34,7 +34,7 @@ class AnswersController < ApplicationController
     if @client 
       response = @client.chat(
         parameters: {
-            model: "gpt-3.5-turbo", # Required.
+            model: current_user.llm_model, # Required.
             messages: [{ role: "user", content: prompt+keywords}], # Required.
             temperature: 0.7,
         })

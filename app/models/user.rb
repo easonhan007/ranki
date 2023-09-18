@@ -27,6 +27,7 @@ class User < ApplicationRecord
 
   delegate :openai_key, to: :setting
   delegate :openai_proxy, to: :setting
+  delegate :llm_model, to: :setting
   
   private 
     def create_setting

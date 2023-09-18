@@ -80,7 +80,7 @@ class CardsController < ApplicationController
     if @client 
       response = @client.chat(
         parameters: {
-            model: "gpt-3.5-turbo", # Required.
+            model: current_user.llm_model, # Required.
             messages: [{ role: "user", content: prompt+front}], # Required.
             temperature: 0.7,
         })
