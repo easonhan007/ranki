@@ -20,4 +20,8 @@ class Card < ApplicationRecord
   def next
     Card.where('created_at < ? And user_id = ?', created_at, user_id).order('created_at DESC').limit(1).first
   end
+
+  def self.sample(count=5)
+    Card.limit(100).all.sample(count).pluck(:front).join(',')
+  end
 end

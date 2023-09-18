@@ -35,7 +35,7 @@ class AnswersController < ApplicationController
       response = @client.chat(
         parameters: {
             model: current_user.llm_model, # Required.
-            messages: [{ role: "user", content: prompt+keywords}], # Required.
+            messages: [{ role: "user", content: prompt}], # Required.
             temperature: 0.7,
         })
       res = response.dig("choices", 0, "message", "content")

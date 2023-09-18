@@ -1,0 +1,13 @@
+<%= render @story %>
+
+<div class="row">
+  <div class="col">
+    <%= link_to "Edit this story", edit_story_path(@story), class: 'btn btn-outline-primary' %> 
+  </div>
+  <div class="col">
+    <%= link_to "Back to stories", stories_path %>
+  </div>
+  <div class="col">
+    <%= button_to "Destroy this story", @story, method: :delete, class: 'btn btn-outline-danger' %>
+  </div>
+</div>

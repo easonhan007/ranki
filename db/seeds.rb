@@ -163,4 +163,8 @@ if Rails.env.eql?('development')
 		puts("creating part#{seq} prompt")
 		AiPrompt.find_or_create_by!(name: "part#{seq}", content: eval("part#{seq}_prompt"))
 	end
+
+	puts "creating story prompt"
+	story_prompt = 'Please write a short story which is less than 200 words, the story should use simple words and these special words must be included: <%= words %>. Also surround every special word with a single "$" character at the beginning and the end.'
+	AiPrompt.find_or_create_by!(name: 'story', content: story_prompt)
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_18_032849) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_18_040606) do
   create_table "ai_prompts", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -87,6 +87,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_032849) do
     t.index ["user_id"], name: "index_settings_on_user_id"
   end
 
+  create_table "stories", force: :cascade do |t|
+    t.text "words"
+    t.integer "word_count", default: 5
+    t.text "content"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stories_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -110,4 +120,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_032849) do
   add_foreign_key "questions", "categories"
   add_foreign_key "questions", "users"
   add_foreign_key "settings", "users"
+  add_foreign_key "stories", "users"
 end

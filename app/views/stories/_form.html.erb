@@ -1,0 +1,27 @@
+<%= form_with(model: story) do |form| %>
+  <% if story.errors.any? %>
+    <div style="color: red">
+      <h5><%= pluralize(story.errors.count, "error") %> prohibited this story from being saved:</h5>
+
+      <ul>
+        <% story.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-2">
+    <%= form.label :word_count, class: 'form-label' %>
+    <%= form.number_field :word_count, class: 'form-control' %>
+  </div>
+
+  <div class="mb-2">
+    <%= form.label :content, class: 'form-label' %>
+    <%= form.text_area :content, class: 'form-control', rows: 5 %>
+  </div>
+
+  <div class="mb-2">
+    <%= form.submit(class: 'btn btn-outline-primary') %>
+  </div>
+<% end %>

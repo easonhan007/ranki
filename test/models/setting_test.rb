@@ -8,6 +8,7 @@
 #  user_id      :integer          not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  llm_model    :string           default("gpt-3.5-turbo")
 #
 require "test_helper"
 

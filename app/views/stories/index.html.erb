@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<h3>Stories</h3>
+<%= link_to "New story", new_story_path, class: 'btn btn-outline-primary my-2' %>
+
+<div id="stories" class="mb-2">
+<table class="table">
+  <thead>
+    <th>ID</th>
+    <th>Words</th>
+  </thead>
+  <tbody>
+    <% @stories.each do |story| %>
+    <tr>
+      <td><%= link_to story.id, story %></td>
+      <td><%= link_to story.words.truncate(20), story %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
