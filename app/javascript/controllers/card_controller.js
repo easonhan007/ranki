@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["source", "msg"]
   connect() {
-    console.log('in card controller......')
+    // console.log('in card controller......')
   }
 
   copy(event) {

@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
-    console.log('from hello controller')
+    // console.log('from hello controller')
   }
 
   newCard(e) {
