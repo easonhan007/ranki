@@ -26,4 +26,5 @@ class Card < ApplicationRecord
   def self.sample(count=5)
     Card.limit(100).all.sample(count).pluck(:front).join(',')
   end
+
 end

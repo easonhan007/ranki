@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   resources :cards do
     collection do
       get 'ai_gen_back'
+      get 'random'
     end
+
     member do
       get 'toggle'
     end

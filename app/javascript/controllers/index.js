@@ -7,6 +7,9 @@ import { application } from "./application"
 import AnswersController from "./answers_controller"
 application.register("answers", AnswersController)
 
+import CardController from "./card_controller"
+application.register("card", CardController)
+
 import CardsController from "./cards_controller"
 application.register("cards", CardsController)
 

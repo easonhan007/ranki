@@ -18,6 +18,14 @@ class CardsController < ApplicationController
     @card = Card.new
   end
 
+  # GET /cards/random
+  # Generate 10 random words with the story prompt
+  def random
+    words = Card.sample(10)
+    raw_prompt = AiPrompt.where(name: 'story').first
+    @prompt = ERB.new(raw_prompt.content).result(binding)
+  end
+
   # GET /cards/1/edit
   def edit
   end

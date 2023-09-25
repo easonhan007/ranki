@@ -5,6 +5,9 @@
   <div class="col">
     <%= link_to "New card", new_card_path, class: 'btn btn-outline-primary my-4' %>
   </div>
+  <div class="col">
+    <%= link_to "Random", random_cards_path, class: 'btn btn-outline-success my-4' %>
+  </div>
 </div>
 <%= render(partial: 'list', locals: {cards: @cards, pagy: @pagy})%>
 
