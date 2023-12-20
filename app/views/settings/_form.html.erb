@@ -26,6 +26,11 @@
     <%= form.select :llm_model, Setting.llm_models.map{|item| [item, item]}, {}, class: 'form-select' %>
   </div>
 
+  <div class="mb-4">
+    <%= form.label :gemini_key, class: 'form-label' %>
+    <%= form.text_field :gemini_key, class: 'form-control', placeholder: "This setting will be given priority" %>
+  </div>
+
   <div>
     <%= form.submit(class: 'btn btn-outline-primary') %>
   </div>

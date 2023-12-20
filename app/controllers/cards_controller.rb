@@ -87,13 +87,21 @@ class CardsController < ApplicationController
     front = params[:front].strip()
     res = 'Can not generate content'
     if @client 
-      response = @client.chat(
-        parameters: {
-            model: current_user.llm_model, # Required.
-            messages: [{ role: "user", content: prompt+front}], # Required.
-            temperature: 0.7,
+      if @client.class.to_s.include?('Gemini')
+
+        response = @client.stream_generate_content({
+          contents: { role: 'user', parts: { text: prompt+front } }
         })
-      res = response.dig("choices", 0, "message", "content")
+        res = response.dig(0, 'candidates', 0, 'content', 'parts', 0, 'text')
+      else
+        response = @client.chat(
+          parameters: {
+              model: current_user.llm_model, # Required.
+              messages: [{ role: "user", content: prompt+front}], # Required.
+              temperature: 0.7,
+          })
+        res = response.dig("choices", 0, "message", "content")
+      end
     end
     respond_to do |format|
       format.json {render json: {content: res, front: front}}

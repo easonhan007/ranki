@@ -1,9 +1,20 @@
 class ApplicationController < ActionController::Base
 	include Pagy::Backend
 
-	before_action :authenticate_user!, :init_openai, :init_menu
+	before_action :authenticate_user!, :init_llm, :init_menu
 
-	def init_openai()
+	def init_llm()
+		if current_user.gemini_key
+			@client = Gemini.new(
+			  credentials: {
+			    service: 'generative-language-api',
+			    api_key: current_user.gemini_key
+			  },
+			  options: { model: 'gemini-pro', server_sent_events: true }
+			)
+			return 
+		end
+
 		key = current_user.openai_key || ENV.fetch('OPENAI_API_KEY') rescue ''
 		domain = current_user.openai_proxy || ENV.fetch('OPENAI_PROXY') rescue ''
 		if not key.blank?
