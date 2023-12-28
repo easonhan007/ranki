@@ -66,6 +66,6 @@ class SettingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def setting_params
-      params.require(:setting).permit(:openai_key, :openai_proxy, :user_id, :gemini_key, :llm_model)
+      params.require(:setting).permit(:openai_key, :openai_proxy, :user_id)
     end
 end
