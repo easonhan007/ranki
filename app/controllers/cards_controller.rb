@@ -10,7 +10,7 @@ class CardsController < ApplicationController
   # GET /cards/1 or /cards/1.json
   def show
     @next_card = current_user.cards.where('created_at < ?', @card.created_at).order('created_at DESC').limit(1)
-    @card.touch()
+    @card.increment!(:view_count)
   end
 
   # GET /cards/new

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_18_085544) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_30_075715) do
   create_table "ai_prompts", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_085544) do
     t.integer "deck_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "view_count", default: 0
     t.index ["deck_id"], name: "index_cards_on_deck_id"
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
