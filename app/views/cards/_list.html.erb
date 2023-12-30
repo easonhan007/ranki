@@ -3,7 +3,6 @@
       <th>Front</th>
       <th>Deck</th>
       <th>View Count</th>
-      <th>Created At</th>
     </thead>
     <tbody>
       <% cards.each do |card| %>
@@ -11,7 +10,6 @@
           <td><%= link_to card.front, card_path(card) %></td>
           <td><%= link_to card.deck.name, deck_path(card.deck) %></td>
           <td><%= card.view_count %></td>
-          <td><%= time_ago_in_words(card.created_at) %> ago </td>
         </tr> 
       <% end %>
     </tbody>

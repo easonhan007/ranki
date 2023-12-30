@@ -3,7 +3,11 @@
     <h3 class="card-title"><%= card.front%>
       <span class="" style="font-size: .8em"><%= card.learned? ? '✅' : ''%></span>
     </h3>
-    <h6 class="card-subtitle mb-2 text-body-secondary"><%= card.deck.name %></h6>
+    <div class="d-flex flex-column flex-md-row justify-content-between my-3">
+      <h6 class="card-subtitle mb-2 text-body-secondary">View Count: <%= card.view_count %></h6>
+      <h6 class="card-subtitle mb-2 text-body-secondary">Deck: <%= link_to card.deck.name, deck_path(card.deck) %></h6>
+      <h6 class="card-subtitle mb-2 text-body-secondary">Created: <%= card.created_at.to_fs(:db) %></h6>
+    </div>
     <article class="card-text">
       <%= to_md(card.back)%>
     </article>
