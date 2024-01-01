@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_30_075715) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_01_090316) do
   create_table "ai_prompts", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -94,6 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_30_075715) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "llm_model", default: "gpt-3.5-turbo"
+    t.string "gemini_key"
     t.index ["user_id"], name: "index_settings_on_user_id"
   end
 

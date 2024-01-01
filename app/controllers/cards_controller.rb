@@ -87,13 +87,22 @@ class CardsController < ApplicationController
     front = params[:front].strip()
     res = 'Can not generate content'
     if @client 
-      response = @client.chat(
-        parameters: {
-            model: current_user.llm_model, # Required.
-            messages: [{ role: "user", content: prompt+front}], # Required.
-            temperature: 0.7,
-        })
-      res = response.dig("choices", 0, "message", "content")
+      if @client_type and @client_type.eql?('gemini')
+        response = @client.generate_content({
+          contents: { role: 'user', parts: { text: prompt+front } }
+        }) rescue nil
+        if response
+          res = response.dig("candidates", 0, "content", "parts", 0, "text")
+        end #if
+      else #openai
+        response = @client.chat(
+          parameters: {
+              model: current_user.llm_model, # Required.
+              messages: [{ role: "user", content: prompt+front}], # Required.
+              temperature: 0.7,
+          })
+        res = response.dig("choices", 0, "message", "content")
+      end #if
     end
     respond_to do |format|
       format.json {render json: {content: res, front: front}}

@@ -79,3 +79,4 @@ gem "devise", "~> 4.9"
 gem "ruby-openai"
 gem "redcarpet"
 gem 'pagy', '~> 6.0' # omit patch digit
+gem 'gemini-ai', '~> 3.1.0'
