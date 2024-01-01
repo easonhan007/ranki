@@ -22,6 +22,7 @@
   </div>
 
   <div class="mb-2">
-    <%= form.submit(class: 'btn btn-outline-primary') %>
+    <% ai_engine = @client_type ? 'Gemini': 'OpenAI'%>
+    <%= form.submit("Create(#{ai_engine})", class: 'btn btn-outline-primary') %>
   </div>
 <% end %>

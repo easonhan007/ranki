@@ -18,7 +18,8 @@
       </div>
       <% if @client %>
         <div class="col">
-          <a class="btn btn-outline-success" data-action="click->cards#gen">Generate Back</a>
+          <% ai_engine = @client_type ? 'Gemini': 'OpenAI'%>
+          <a class="btn btn-outline-success" data-action="click->cards#gen"><%= "Generate Back(#{ai_engine})" %></a>
           <div data-cards-target="loading" role="status" ></div>
         </div>
       <% end #if%>
