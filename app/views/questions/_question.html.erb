@@ -1,12 +1,13 @@
 <div id="<%= dom_id question %>">
+  <h3> <%= question.content %> </h3>
   <p>
     <strong>Category:</strong>
-    <%= question.category_id %>
+    <%= question.category.name %>
   </p>
 
   <p>
-    <strong>User:</strong>
-    <%= question.user_id %>
+    <strong>Creator:</strong>
+    <%= question.user.email %>
   </p>
 
   <p>
@@ -14,9 +15,16 @@
     <%= question.date_of_occurrence %>
   </p>
 
-  <p>
-    <strong>Content:</strong>
-    <%= question.content %>
-  </p>
+  <div class="my-4">
+    <% question.answers.where(user_id: current_user.id).order('created_at DESC').each do |answer| %>
+      <section>
+      <p>
+        <strong class="">keywords: </strong> <%= answer.keywords %>
+      </p>
+        <%= to_md answer.content%>
+      </section>
+    <% end %>
+  </div>
+
 
 </div>

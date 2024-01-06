@@ -63,7 +63,7 @@ class AnswersController < ApplicationController
     respond_to do |format|
       if @answer.save
         Favorite.create(user_id: current_user.id, question_id: @answer.question.id)
-        format.html { redirect_to root_path, notice: "Answer was successfully created." }
+        format.html { redirect_to question_path(@answer.question), notice: "Answer was successfully created." }
         format.json { render :show, status: :created, location: @answer }
       else
         format.html { render :new, status: :unprocessable_entity }
