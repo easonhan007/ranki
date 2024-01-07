@@ -46,6 +46,7 @@ class ApplicationController < ActionController::Base
 	# since the gemini service is for free now 
 	# I will not fix this issue 
 	def setup_gemini
+		return if not current_user
 		if current_user.gemini_key.present?
 			@client = Gemini.new(
 				credentials: {
